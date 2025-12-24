@@ -54,7 +54,7 @@ a {
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
-.container {
+.containerr {
   max-width: 1120px;
   margin-inline: 1.5rem;
 }
@@ -229,7 +229,7 @@ a {
 
 /*=============== BREAKPOINTS ===============*/
 @media screen and (max-width: 340px) {
-  .container {
+  .containerr {
     margin-inline: 1rem;
   }
 
@@ -239,7 +239,7 @@ a {
 }
 
 @media screen and (min-width: 1118px) {
-  .container {
+  .containerr {
     margin-inline: auto;
   }
 

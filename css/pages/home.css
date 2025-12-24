@@ -1,0 +1,849 @@
+/* =====================================================
+   DESIGN TOKENS — IDENTIDADE GLOBAL
+   Projeto: Colonialismo Epistêmico & Islamofobia
+   ===================================================== */
+
+:root {
+  /* -----------------------------------------------------
+     1. PALETA DE CORES
+     ----------------------------------------------------- */
+  --branco-quente: #f5f5f5;
+  --preto-profundo: #0b120e;
+  --verde-oliva: #0f1a13;
+
+  --vermelho-vinho: #c1272d;
+  --vermelho-vinho-hover: #a51f24;
+  --verde-palestina: #007a3d;
+
+  --cinza-claro: #eaeaea;
+  --cinza-medio: #aaa;
+  --cinza-borda: #2a2a2a;
+
+  /* -----------------------------------------------------
+     2. SOMBRAS E ELEVAÇÃO
+     ----------------------------------------------------- */
+  --sombra-leve: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --sombra-media: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  /* -----------------------------------------------------
+     3. TIPOGRAFIA
+     ----------------------------------------------------- */
+  --fonte-principal: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --fonte-secundaria: "Playfair Display", Georgia, "Times New Roman", serif;
+  --body-font: "Montserrat", sans-serif;
+
+  /* — Tamanhos de texto */
+  --texto-base: 1rem;
+  --texto-pequeno: 0.875rem;
+  --texto-micro: 0.75rem;
+
+  /* — Títulos */
+  --titulo-h1: clamp(2.2rem, 4vw, 3rem);
+  --titulo-h2: clamp(1.8rem, 3vw, 2.4rem);
+  --titulo-h3: 1.5rem;
+  --titulo-h4: 1.25rem;
+
+  /* — Pesos de fonte */
+  --peso-regular: 400;
+  --peso-medio: 500;
+  --peso-semi-bold: 600;
+
+  /* — Ritmo de leitura */
+  --linha-texto: 1.6;
+  --linha-titulo: 1.25;
+  --tracking-normal: 0;
+  --tracking-sutil: 0.02em;
+
+  /* -----------------------------------------------------
+     4. GRADIENTES DE BOTÕES
+     ----------------------------------------------------- */
+  --grad-teoria: linear-gradient(135deg, #7a1f2b, #c1272d);
+  --grad-experiencia: linear-gradient(135deg, #1f3d2b, #3a6b4f);
+
+  /* -----------------------------------------------------
+     5. DETALHES VISUAIS
+     ----------------------------------------------------- */
+  --reflection-color: rgba(255, 255, 255, 0.18);
+  --border-color: #0b120e;
+}
+
+/* =====================================================
+   1. BASE GLOBAL
+   ===================================================== */
+
+html {
+  background-color: var(--branco-quente);
+  scroll-behavior: smooth;
+}
+
+main a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+main a:hover {
+  color: var(--vermelho-vinho);
+}
+
+/* -----------------------------------------------------
+   1.1 BARRA DE PROGRESSO DE SCROLL
+   ----------------------------------------------------- */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--vermelho-vinho),
+    var(--vermelho-vinho-hover)
+  );
+  z-index: 10000;
+  transition: width 0.15s ease-out;
+}
+
+/* -----------------------------------------------------
+   1.2 TOOLTIP INTERATIVO — GLOSSÁRIO
+   ----------------------------------------------------- */
+.glossario {
+  position: relative;
+  cursor: pointer;
+  font-weight: bolder;
+  color: var(--vermelho-vinho);
+  border-bottom: 1px dashed var(--vermelho-vinho);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.glossario:hover {
+  color: var(--verde-palestina);
+  border-bottom-color: var(--verde-palestina);
+}
+
+/* Caixa do tooltip */
+.glossario .tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--verde-oliva);
+  color: var(--cinza-claro);
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  max-width: 280px;
+  min-width: 200px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  z-index: 999;
+}
+
+/* Seta do tooltip */
+.glossario .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--verde-oliva) transparent transparent;
+}
+
+/* Estado visível com animação */
+.glossario.aberto .tooltip {
+  display: block;
+  animation: fadeGlossario 0.2s ease-out;
+}
+
+@keyframes fadeGlossario {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* -----------------------------------------------------
+   1.3 SCROLLBAR PERSONALIZADA — COR E GRADIENTE
+   ----------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--preto-profundo);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--grad-teoria);
+  border-radius: 6px;
+  border: 3px solid var(--preto-profundo);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #642123, #9e272b);
+}
+
+/* -----------------------------------------------------
+   1.4 CONTEINARS GERAIS
+   ----------------------------------------------------- */
+.section,
+.banner .container,
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.section,
+.container {
+  margin-top: 4.5rem;
+  margin-bottom: 4.5rem;
+}
+
+/* =====================================================
+   1.4.1. TÍTULOS E TIPOGRAFIA
+   ===================================================== */
+.section h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  margin-bottom: 1rem;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--preto-profundo);
+}
+
+.section p {
+  font-family: var(--body-font);
+  font-size: 0.95rem;
+  line-height: var(--linha-texto);
+  color: var(--cinza-claro);
+  margin-bottom: 1rem;
+  max-width: 800px;
+}
+
+/* =====================================================
+   2. BANNER / HERO
+   ===================================================== */
+
+.banner {
+  background: linear-gradient(
+    180deg,
+    var(--verde-oliva),
+    var(--preto-profundo)
+  );
+  color: var(--branco-quente);
+  padding: clamp(4.5rem, 8vw, 6.5rem) 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Conteúdo central do banner */
+.banner .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Título principal */
+.hero-title {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h1);
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  margin-bottom: 1.2rem;
+}
+
+.hero-title .linha {
+  display: block;
+}
+
+.hero-title .linha.dois {
+  color: var(--vermelho-vinho);
+  font-weight: var(--peso-semi-bold);
+}
+
+/* Texto de apoio */
+.banner p {
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  color: var(--cinza-claro);
+}
+
+/* =====================================================
+   3. BOTÕES INTERATIVOS — HOME
+   ===================================================== */
+/* Container flexível dos botões */
+.buttons.container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Estrutura base do botão */
+.button {
+  position: relative;
+  transition: transform 0.35s ease;
+  cursor: pointer;
+}
+
+/* Conteúdo do botão (texto + reflexos) */
+.button__content {
+  position: relative;
+  padding: 1.2rem 3rem;
+  border-radius: 3rem;
+  border: 2px solid var(--border-color);
+  font-family: var(--body-font);
+  color: var(--branco-quente);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  letter-spacing: 0.03em;
+  transition: transform 0.3s ease;
+}
+
+/* Gradientes por tipo de botão */
+.button.primary .button__content {
+  background: var(--grad-teoria);
+}
+
+.button.secondary .button__content {
+  background: var(--grad-experiencia);
+}
+
+/* Texto do botão */
+.button__text {
+  font-weight: var(--peso-semi-bold);
+  position: relative;
+  z-index: 2;
+}
+
+/* Reflexos animados */
+.button__reflection-1,
+.button__reflection-2 {
+  width: 10px;
+  height: 140px;
+  background-color: var(--reflection-color);
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  rotate: 25deg;
+  left: -180%;
+  transition: left 0.6s ease;
+}
+
+.button__reflection-1::after,
+.button__reflection-2::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  background-color: var(--reflection-color);
+  top: -1rem;
+}
+
+.button__reflection-1::after {
+  width: 24px;
+  left: 1.2rem;
+}
+
+.button__reflection-2::after {
+  width: 36px;
+  left: 0.9rem;
+}
+
+/* Shadow do botão */
+.button__shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: 3rem;
+  z-index: -1;
+  opacity: 0.4;
+  transform: translate(0.35rem, 0.35rem);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Gradiente da shadow por tipo de botão */
+.button.primary .button__shadow {
+  background: var(--grad-teoria);
+  opacity: 0;
+}
+
+.button.secondary .button__shadow {
+  background: var(--grad-experiencia);
+  opacity: 0;
+}
+
+/* Hover do botão — efeito 3D */
+.button:hover {
+  transform: translateY(-6px) scale(1.05) rotateX(3deg) rotateY(-2deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover da shadow */
+.button:hover .button__shadow {
+  transform: translate(0.5rem, 0.5rem);
+  opacity: 0.5;
+}
+
+/* Hover dos reflexos */
+.button:hover .button__reflection-1 {
+  left: 120%;
+}
+
+.button:hover .button__reflection-2 {
+  left: -70%;
+}
+
+/* =====================================================
+   4. CARROSSEL DE CITAÇÕES
+   ===================================================== */
+#carrossel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    var(--verde-oliva),
+    var(--preto-profundo)
+  );
+  padding: 2rem 1.5rem;
+  box-shadow: var(--sombra-media);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+blockquote {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h3);
+  line-height: var(--linha-texto);
+  color: var(--cinza-claro);
+  text-align: center;
+  margin-bottom: 1rem;
+  max-width: 700px;
+}
+
+cite {
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  color: var(--verde-palestina);
+  display: block;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+cite em {
+  font-style: italic;
+  color: var(--vermelho-vinho);
+}
+
+.carroussel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--verde-palestina);
+  color: var(--branco-quente);
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sombra-leve);
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.carroussel-btn:hover {
+  background-color: var(--vermelho-vinho);
+}
+
+.carroussel-btn.prev {
+  left: 1rem;
+}
+
+.carroussel-btn.next {
+  right: 1rem;
+}
+
+/* =====================================================
+   5. SEÇÃO SOBRE — HOME / PROJETO
+   ===================================================== */
+#sobre {
+  background-color: var(--cinza-claro);
+  color: var(--preto-profundo);
+  padding: 4rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--sombra-media);
+  max-width: 900px;
+  margin: 0 auto 4.5rem auto;
+}
+
+#sobre h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  margin-bottom: 1rem;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--vermelho-vinho);
+}
+
+#sobre p {
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  color: var(--preto-profundo);
+  margin-bottom: 1rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =====================================================
+   6. CAMINHOS DE EXPLORAÇÃO
+   ===================================================== */
+#caminhos {
+  margin-top: 4.5rem;
+  margin-bottom: 4.5rem;
+  text-align: center;
+}
+
+#caminhos h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  margin-bottom: 1rem;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--preto-profundo);
+}
+
+/* Container de cards */
+#caminhos .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+/* Cada card individual */
+#caminhos .card {
+  background-color: var(--branco-quente);
+  border-left: 4px solid var(--vermelho-vinho-hover);
+  border-radius: 16px;
+  padding: 1.8rem 1.5rem;
+  box-shadow: var(--sombra-media);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#caminhos .card:hover {
+  border-left: 5px solid var(--verde-palestina);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos dos cards */
+#caminhos .card h3 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h3);
+  font-weight: var(--peso-semi-bold);
+  color: var(--preto-profundo);
+  margin-bottom: 0.8rem;
+}
+
+/* Texto do card */
+#caminhos .card p {
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  color: var(--preto-profundo);
+  margin-bottom: 1rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Links do card */
+#caminhos .card a {
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  font-weight: var(--peso-semi-bold);
+  color: var(--vermelho-vinho);
+  text-decoration: none;
+  margin-top: auto;
+  align-self: flex-start;
+  transition: color 0.3s ease;
+}
+
+#caminhos .card a:hover {
+  color: var(--verde-palestina);
+}
+
+/* =====================================================
+   7. SEÇÃO DE STATS — DADOS RELEVANTES
+   ===================================================== */
+.stats {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background-color: var(--cinza-claro);
+  border-radius: 16px;
+}
+
+.stats h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  margin-bottom: 1rem;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--verde-palestina);
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.6rem;
+}
+
+.stat-card {
+  background-color: var(--branco-quente);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  color: var(--vermelho-vinho);
+  margin-bottom: 0.6rem;
+}
+
+.stat-card p {
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  color: var(--preto-profundo);
+  margin-bottom: 1rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==============================
+   AOS — animação personalizada
+   ============================== */
+[data-aos="fade-right"] {
+  opacity: 0;
+  transform: translateX(-20px) scale(0.95);
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-out;
+}
+
+[data-aos="fade-right"].aos-animate {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+[data-aos="fade-left"] {
+  opacity: 0;
+  transform: translateX(20px) scale(0.95);
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-out;
+}
+
+[data-aos="fade-left"].aos-animate {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-out;
+}
+
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* =====================================================
+   8. SEÇÃO FAQ — PERGUNTAS FREQUENTES
+   ===================================================== */
+.faq {
+  max-width: 900px;
+  margin: 4.5rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.faq h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  margin-bottom: 1rem;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--preto-profundo);
+}
+
+/* Container de itens FAQ */
+.faq-item {
+  background-color: var(--branco-quente);
+  border-left: 4px solid var(--vermelho-vinho);
+  padding: 2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background-color 0.3s ease;
+  text-align: left;
+}
+
+/* Hover mais expressivo */
+.faq-item:hover {
+    border-left: 5px solid var(--vermelho-vinho-hover);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+  background-color: #f9f9f9;
+}
+
+/* Pergunta */
+.faq-item h3 {
+  font-family: var(--fonte-principal);
+  font-size: 1.1rem;
+  color: var(--vermelho-vinho);
+  margin-bottom: 0.75rem;
+  font-weight: var(--peso-semi-bold);
+}
+
+/* Resposta */
+.faq-item p {
+  font-family: var(--body-font);
+  font-size: 0.95rem;
+  line-height: var(--linha-texto);
+  color: var(--verde-oliva);
+  margin: 0;
+}
+
+/* =====================================================
+   8. SECTION DESTAQUE — AUTOAVALIAÇÃO
+   ===================================================== */
+.section.destaque {
+  background: linear-gradient(180deg, var(--verde-oliva), var(--preto-profundo));
+  color: var(--branco-quente);
+  text-align: center;
+  padding: clamp(1rem, 6vw, 3rem) 1.5rem;
+  border-radius: 16px;
+  margin: 4rem auto;
+  max-width: 900px;
+  overflow: hidden;
+  position: relative;
+
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-aos="fade-zoom"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.section.destaque h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  margin-bottom: 1rem;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--branco-quente);
+}
+
+.section.destaque p {
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: var(--cinza-claro);
+}
+
+.section.destaque .buttons.container {
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.section.destaque .button.primary .button__content {
+  background: var(--grad-teoria);
+  transition: transform 0.3s ease;
+}
+
+.section.destaque .button:hover {
+  transform: translateY(-6px) scale(1.05) rotateX(3deg) rotateY(-2deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.section.destaque .button:hover .button__reflection-1 {
+  left: 120%;
+}
+
+.section.destaque .button:hover .button__reflection-2 {
+  left: -70%;
+}
+
+.section.destaque:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
