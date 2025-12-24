@@ -1,0 +1,178 @@
+/*==================================================
+  FOOTER — Colonialismo Epistêmico & Islamofobia
+==================================================*/
+
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== CORES AJUSTADAS AO PROJETO ==========*/
+  --black-color: #0f1a13;              /* verde oliva escuro (header) */
+  --black-color-light: #0f6b3a;        /* verde palestino suavizado */
+  --black-color-lighten: #0b5630;      /* verde mais profundo */
+  --white-color: #f5f5f2;              /* branco quente */
+  --body-color: #f5f5f2;               /* fundo principal */
+  --destaque-primario-hover: #a51f24;
+
+  /*========== TIPOGRAFIA ==========*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== PESO DA FONTE ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 500;
+
+  /*========== Z-INDEX ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+/* Tipografia específica do footer */
+.site-footer {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  margin-top: 6rem;
+  border-top: 3px solid var(--destaque-primario-hover);
+}
+
+
+/* Container do footer */
+.site-footer .footer-container {
+    text-align: center;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: 4rem 1.5rem 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Colunas */
+.site-footer .footer-col h3 {
+  font-family: var(--title-font);
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.site-footer .footer-col p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/*==================================================
+  LINKS
+==================================================*/
+.site-footer .footer-links {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.site-footer .footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.site-footer .footer-links a {
+  font-size: 0.9rem;
+  color: rgba(245, 245, 242, 0.8);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.site-footer .footer-links a:hover {
+  color: var(--black-color-light);
+  transform: translateX(4px);
+}
+
+/*==================================================
+  REDES SOCIAIS
+==================================================*/
+.site-footer .footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.site-footer .footer-social a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(245, 245, 242, 0.25);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  color: var(--white-color);
+  transition: background-color 0.3s ease,
+              border-color 0.3s ease,
+              transform 0.3s ease;
+}
+
+.site-footer .footer-social a:hover {
+  background-color: var(--black-color-light);
+  border-color: var(--black-color-light);
+  transform: translateY(-3px);
+}
+
+/*==================================================
+  BASE INFERIOR
+==================================================*/
+.site-footer .footer-bottom {
+  border-top: 1px solid rgba(245, 245, 242, 0.15);
+  text-align: center;
+  padding: 1.5rem 1.5rem 2rem;
+}
+
+.site-footer .footer-bottom p {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/*==================================================
+  RESPONSIVO
+==================================================*/
+@media (max-width: 480px) {
+  .site-footer {
+    margin-top: 4rem;
+  }
+
+  .site-footer .footer-container {
+    gap: 2rem;
+  }
+
+  .site-footer .footer-social {
+    justify-content: flex-start;
+  }
+}

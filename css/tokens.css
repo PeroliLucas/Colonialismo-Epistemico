@@ -1,0 +1,123 @@
+/* =====================================================
+   DESIGN TOKENS — IDENTIDADE GLOBAL
+   -----------------------------------------------------
+   Este arquivo define TODAS as decisões visuais do site:
+   • Cores
+   • Tipografia
+   • Hierarquia
+   • Ênfases e interações
+   ===================================================== */
+
+:root {
+
+  /* =====================================================
+     1. FUNDO E ESTRUTURA
+     -----------------------------------------------------
+     Cores de base do layout:
+     fundo geral, seções e estruturas
+     ===================================================== */
+  --cor-fundo-principal: #f5f5f2;      /* branco quente, leitura confortável */
+  --cor-fundo-secundario: #eceae6;     /* variação sutil para seções */
+  --cor-estrutura: #0f1a13;            /* verde-preto profundo (peso crítico) */
+
+  /* =====================================================
+     2. TEXTOS
+     -----------------------------------------------------
+     Cores pensadas para leitura longa
+     e contraste acessível
+     ===================================================== */
+  --texto-principal: #0b120e;           /* texto base (alta legibilidade) */
+  --texto-secundario: #5e5e5e;          /* textos de apoio, legendas */
+  --texto-invertido: #f5f5f2;           /* uso sobre fundos escuros */
+
+  /* =====================================================
+     3. DESTAQUES POLÍTICOS (DISCRETOS)
+     -----------------------------------------------------
+     Referência simbólica à bandeira palestina
+     sem uso explícito ou panfletário
+     ===================================================== */
+  --destaque-primario: #c1272d;         /* vermelho contido (tensão, alerta) */
+  --destaque-primario-hover: #a51f24;
+
+  --destaque-secundario: #0f6b3a;       /* verde palestino suavizado */
+  --destaque-secundario-hover: #0b5630;
+
+  /* =====================================================
+     4. LINKS E INTERAÇÕES
+     -----------------------------------------------------
+     Verde → leitura / navegação
+     Vermelho → conflito / ruptura
+     ===================================================== */
+  --link: #0f6b3a;
+  --link-hover: #c1272d;
+
+  /* =====================================================
+     5. BOTÕES
+     -----------------------------------------------------
+     Primário = ação afirmativa
+     Secundário = alerta / tensão
+     ===================================================== */
+  --botao-primario: #0f6b3a;
+  --botao-primario-hover: #0b5630;
+
+  --botao-secundario: #c1272d;
+  --botao-secundario-hover: #a51f24;
+
+  /* =====================================================
+     6. COMPONENTES
+     -----------------------------------------------------
+     Cards, caixas de texto, blocos de conteúdo
+     ===================================================== */
+  --fundo-card: #ffffff;
+  --borda-suave: #d1d1d1;
+
+  /* =====================================================
+     7. ALERTAS E ÊNFASES
+     -----------------------------------------------------
+     Avisos, erros, chamadas críticas
+     ===================================================== */
+  --alerta: #c1272d;
+  --alerta-suave: #f3d6d7;
+
+  /* =====================================================
+     8. SOMBRAS
+     -----------------------------------------------------
+     Profundidade sutil, sem efeito "plástico"
+     ===================================================== */
+  --sombra-leve: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --sombra-media: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  /* =====================================================
+     9. TIPOGRAFIA — DESIGN SYSTEM
+     -----------------------------------------------------
+     Leitura longa + peso acadêmico
+     ===================================================== */
+
+  /* Famílias tipográficas */
+  --fonte-principal: "Inter", system-ui, "-apple-system, BlinkMacSystemFont", "Segoe UI", sans-serif;
+  --fonte-secundaria: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  /* Tamanhos base */
+  --texto-base: 1rem;          /* corpo do texto */
+  --texto-pequeno: 0.875rem;   /* legendas, notas */
+  --texto-micro: 0.75rem;      /* metadados */
+
+  /* Hierarquia de títulos */
+  --titulo-h1: clamp(2.2rem, 4vw, 3rem);
+  --titulo-h2: clamp(1.8rem, 3vw, 2.4rem);
+  --titulo-h3: 1.5rem;
+  --titulo-h4: 1.25rem;
+
+  /* Pesos tipográficos */
+  --peso-regular: 400;
+  --peso-medio: 500;
+  --peso-semi-bold: 600;
+
+  /* Ritmo de leitura */
+  --linha-texto: 1.6;
+  --linha-titulo: 1.25;
+
+  /* Espaçamento entre letras */
+  --tracking-normal: 0;
+  --tracking-sutil: 0.02em;
+}
