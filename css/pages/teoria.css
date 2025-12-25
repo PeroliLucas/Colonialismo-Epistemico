@@ -1,0 +1,1081 @@
+/* =====================================================
+   DESIGN TOKENS — IDENTIDADE GLOBAL
+   Projeto: Colonialismo Epistêmico & Islamofobia
+   ===================================================== */
+
+:root {
+  /* -----------------------------------------------------
+     1. PALETA DE CORES
+     ----------------------------------------------------- */
+  --branco-quente: #f5f5f5;
+  --preto-profundo: #0b120e;
+  --verde-oliva: #0f1a13;
+
+  --vermelho-vinho: #c1272d;
+  --vermelho-vinho-hover: #a51f24;
+  --verde-palestina: #007a3d;
+
+  --cinza-claro: #eaeaea;
+  --cinza-medio: #aaa;
+  --cinza-borda: #2a2a2a;
+
+  /* -----------------------------------------------------
+     2. SOMBRAS E ELEVAÇÃO
+     ----------------------------------------------------- */
+  --sombra-leve: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --sombra-media: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  /* -----------------------------------------------------
+     3. TIPOGRAFIA
+     ----------------------------------------------------- */
+  --fonte-principal: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --fonte-secundaria: "Playfair Display", Georgia, "Times New Roman", serif;
+  --body-font: "Montserrat", sans-serif;
+
+  /* — Tamanhos de texto */
+  --texto-base: 1rem;
+  --texto-pequeno: 0.875rem;
+  --texto-micro: 0.75rem;
+
+  /* — Títulos */
+  --titulo-h1: clamp(2.2rem, 4vw, 3rem);
+  --titulo-h2: clamp(1.8rem, 3vw, 2.4rem);
+  --titulo-h3: 1.5rem;
+  --titulo-h4: 1.25rem;
+
+  /* — Pesos de fonte */
+  --peso-regular: 400;
+  --peso-medio: 500;
+  --peso-semi-bold: 600;
+
+  /* — Ritmo de leitura */
+  --linha-texto: 1.6;
+  --linha-titulo: 1.25;
+  --tracking-normal: 0;
+  --tracking-sutil: 0.02em;
+
+  /* -----------------------------------------------------
+     4. GRADIENTES DE BOTÕES
+     ----------------------------------------------------- */
+  --grad-teoria: linear-gradient(135deg, #7a1f2b, #c1272d);
+  --grad-experiencia: linear-gradient(135deg, #1f3d2b, #3a6b4f);
+
+  /* -----------------------------------------------------
+     5. DETALHES VISUAIS
+     ----------------------------------------------------- */
+  --reflection-color: rgba(255, 255, 255, 0.18);
+  --border-color: #0b120e;
+}
+
+/* =====================================================
+   1. BASE GLOBAL
+   ===================================================== */
+
+html {
+  background-color: var(--branco-quente);
+  scroll-behavior: smooth;
+}
+
+main a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+main a:hover {
+  color: var(--vermelho-vinho);
+}
+
+/* -----------------------------------------------------
+   1.1 BARRA DE PROGRESSO DE SCROLL
+   ----------------------------------------------------- */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--vermelho-vinho),
+    var(--vermelho-vinho-hover)
+  );
+  z-index: 10000;
+  transition: width 0.15s ease-out;
+}
+
+/* -----------------------------------------------------
+   1.2 TOOLTIP INTERATIVO — GLOSSÁRIO
+   ----------------------------------------------------- */
+.glossario {
+  position: relative;
+  cursor: pointer;
+  font-weight: bolder;
+  color: var(--vermelho-vinho);
+  border-bottom: 1px dashed var(--vermelho-vinho);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.glossario:hover {
+  color: var(--verde-palestina);
+  border-bottom-color: var(--verde-palestina);
+}
+
+/* Caixa do tooltip */
+.glossario .tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--verde-oliva);
+  color: var(--cinza-claro);
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  max-width: 280px;
+  min-width: 200px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  z-index: 999;
+}
+
+/* Seta do tooltip */
+.glossario .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--verde-oliva) transparent transparent;
+}
+
+/* Estado visível com animação */
+.glossario.aberto .tooltip {
+  display: block;
+  animation: fadeGlossario 0.2s ease-out;
+}
+
+@keyframes fadeGlossario {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* -----------------------------------------------------
+   1.3 SCROLLBAR PERSONALIZADA — COR E GRADIENTE
+   ----------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--preto-profundo);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--grad-teoria);
+  border-radius: 6px;
+  border: 3px solid var(--preto-profundo);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #642123, #9e272b);
+}
+
+/* -----------------------------------------------------
+   1.4 CONTEINARS GERAIS
+   ----------------------------------------------------- */
+.section,
+.banner .container,
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.section,
+.container {
+  margin-top: 4.5rem;
+  margin-bottom: 4.5rem;
+}
+
+/* =====================================================
+   1.4.1. TÍTULOS E TIPOGRAFIA
+   ===================================================== */
+.section h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  margin-bottom: 1rem;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--preto-profundo);
+}
+
+.section p {
+  font-family: var(--body-font);
+  font-size: 0.95rem;
+  line-height: var(--linha-texto);
+  color: var(--cinza-claro);
+  margin-bottom: 1rem;
+  max-width: 800px;
+}
+
+/* =====================================================
+   2. BANNER / HERO
+   ===================================================== */
+
+.banner {
+  background: linear-gradient(
+    180deg,
+    var(--verde-oliva),
+    var(--preto-profundo)
+  );
+  color: var(--branco-quente);
+  padding: clamp(4.5rem, 8vw, 6.5rem) 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Conteúdo central do banner */
+.banner .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Título principal */
+.hero-title {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h1);
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  margin-bottom: 1.2rem;
+}
+
+.hero-title .linha {
+  display: block;
+}
+
+.hero-title .linha.dois {
+  color: var(--vermelho-vinho);
+  font-weight: var(--peso-semi-bold);
+}
+
+/* Texto de apoio */
+.banner p {
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  color: var(--cinza-claro);
+}
+
+/* =====================================================
+   3. BOTÕES INTERATIVOS — HOME
+   ===================================================== */
+/* Container flexível dos botões */
+.buttons.container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Estrutura base do botão */
+.button {
+  position: relative;
+  transition: transform 0.35s ease;
+  cursor: pointer;
+}
+
+/* Conteúdo do botão (texto + reflexos) */
+.button__content {
+  position: relative;
+  padding: 1.2rem 3rem;
+  border-radius: 3rem;
+  border: 2px solid var(--border-color);
+  font-family: var(--body-font);
+  color: var(--branco-quente);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  letter-spacing: 0.03em;
+  transition: transform 0.3s ease;
+}
+
+/* Gradientes por tipo de botão */
+.button.primary .button__content {
+  background: var(--grad-teoria);
+}
+
+.button.secondary .button__content {
+  background: var(--grad-experiencia);
+}
+
+/* Texto do botão */
+.button__text {
+  font-weight: var(--peso-semi-bold);
+  position: relative;
+  z-index: 2;
+}
+
+/* Reflexos animados */
+.button__reflection-1,
+.button__reflection-2 {
+  width: 10px;
+  height: 140px;
+  background-color: var(--reflection-color);
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  rotate: 25deg;
+  left: -180%;
+  transition: left 0.6s ease;
+}
+
+.button__reflection-1::after,
+.button__reflection-2::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  background-color: var(--reflection-color);
+  top: -1rem;
+}
+
+.button__reflection-1::after {
+  width: 24px;
+  left: 1.2rem;
+}
+
+.button__reflection-2::after {
+  width: 36px;
+  left: 0.9rem;
+}
+
+/* Shadow do botão */
+.button__shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: 3rem;
+  z-index: -1;
+  opacity: 0.4;
+  transform: translate(0.35rem, 0.35rem);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Gradiente da shadow por tipo de botão */
+.button.primary .button__shadow {
+  background: var(--grad-teoria);
+  opacity: 0;
+}
+
+.button.secondary .button__shadow {
+  background: var(--grad-experiencia);
+  opacity: 0;
+}
+
+/* Hover do botão — efeito 3D */
+.button:hover {
+  transform: translateY(-6px) scale(1.05) rotateX(3deg) rotateY(-2deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover da shadow */
+.button:hover .button__shadow {
+  transform: translate(0.5rem, 0.5rem);
+  opacity: 0.5;
+}
+
+/* Hover dos reflexos */
+.button:hover .button__reflection-1 {
+  left: 120%;
+}
+
+.button:hover .button__reflection-2 {
+  left: -70%;
+}
+
+/* =====================================================
+   BANNER / HERO ESPECÍFICO
+   ===================================================== */
+.banner {
+  background: linear-gradient(180deg, var(--verde-oliva), var(--preto-profundo));
+  color: var(--branco-quente);
+  padding: clamp(4.5rem, 8vw, 6.5rem) 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Container centralizado */
+.banner .container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Conteúdo do hero */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Linhas do título */
+.hero-content .linha {
+  display: block;
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h1);
+  font-weight: var(--peso-semi-bold);
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--branco-quente);
+}
+
+.hero-content .linha.dois {
+  color: var(--vermelho-vinho);
+}
+
+/* Texto de apoio do banner */
+.banner p {
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  color: var(--cinza-claro);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* =====================================================
+   SEÇÃO LEITURA PROFUNDA — CONTEÚDO PRINCIPAL
+   ===================================================== */
+.leitura-profunda {
+  background-color: var(--preto-profundo); 
+  color: var(--cinza-claro);
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+  border-radius: 16px;
+  max-width: 900px;
+  margin: 4.5rem auto 2rem auto;
+  box-shadow: var(--sombra-media);
+  overflow: hidden;
+  text-align: justify;
+  line-height: var(--linha-texto);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Títulos da seção */
+.leitura-profunda h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  color: var(--vermelho-vinho);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+}
+
+/* Parágrafos */
+.leitura-profunda p {
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  color: var(--cinza-claro);
+  margin-bottom: 1.2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Hover geral da seção (leve efeito 3D) */
+.leitura-profunda:hover {
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================================================
+   CURIOSIDADE — SEÇÃO DESTACADA
+   ===================================================== */
+.curiosidade {
+  background-color: var(--cinza-claro); /* mantém cores do projeto */
+  color: var(--cinza-borda);
+  padding: clamp(1.8rem, 4vw, 3rem) 1.5rem;
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 2rem auto; /* distância do banner e de outras seções */
+  box-shadow: var(--sombra-leve);
+  text-align: center;
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid var(--verde-palestina);
+}
+
+/* Hover leve */
+.curiosidade:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  border-left: 5px solid var(--vermelho-vinho-hover);
+}
+
+/* Texto da curiosidade */
+.curiosidade p {
+  margin: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+}
+
+/* Palavra de destaque (se necessário) */
+.curiosidade .destaque {
+  color: var(--vermelho-vinho);
+  font-weight: var(--peso-semi-bold);
+}
+
+
+/* =====================================================
+   TIMELINE — INTEGRAÇÃO COM DESIGN TOKENS
+   ===================================================== */
+.linha-tempo,
+.timeline {
+  max-width: 900px;
+  margin: 4.5rem auto;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.timeline h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  text-align: center;
+  margin-bottom: 3rem;
+  line-height: var(--linha-titulo);
+  color: var(--preto-profundo);
+}
+
+.timeline ul {
+  list-style: none;
+  padding: 0;
+  position: relative;
+}
+
+.timeline ul::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--verde-oliva);
+  border-radius: 2px;
+}
+
+.timeline li {
+  position: relative;
+  width: 50%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+}
+
+.timeline li:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.timeline li:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  width: 16px;
+  height: 16px;
+  background-color: var(--vermelho-vinho);
+  border: 4px solid var(--branco-quente);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: var(--sombra-leve);
+}
+
+.timeline li:nth-child(odd)::before {
+  right: -8px;
+}
+
+.timeline li:nth-child(even)::before {
+  left: -8px;
+}
+
+.timeline li .content {
+  background-color: var(--branco-quente);
+  padding: 1.4rem 1.6rem;
+  border-radius: 12px;
+  box-shadow: var(--sombra-media);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline li .content strong {
+  display: block;
+  color: var(--vermelho-vinho);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline li .content p {
+  margin: 0;
+  color: var(--verde-oliva);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+}
+
+.timeline li:hover .content {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Contexto adicional (ex.: detalhes ocultos) */
+.contexto {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  font-size: var(--texto-pequeno);
+  color: var(--verde-oliva);
+  border-left: 3px solid var(--verde-palestina);
+  padding-left: 0.8rem;
+  transition: max-height 0.5s ease;
+}
+
+/* Botão de expandir contexto */
+.evento button {
+  margin-top: 0.5rem;
+  font-size: var(--texto-pequeno);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--cinza-claro);
+  color: var(--verde-oliva);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.evento button:hover {
+  background-color: var(--verde-oliva);
+  color: var(--branco-quente);
+}
+
+/* =====================================================
+   MECANISMOS DE DOMINAÇÃO — TEXTO CORRIDO REFINADO
+   ===================================================== */
+.mecanismos-dom {
+  background-color: #f5f5f5; /* fundo cinza claro, neutro */
+  color: var(--preto-profundo);
+  max-width: 900px;
+  margin: 6rem auto; /* espaçamento do banner */
+  padding: clamp(3rem, 6vw, 5rem) 2rem; /* espaçamento interno confortável */
+  border-radius: 12px;
+  text-align: justify; /* mantém texto corrido */
+  line-height: var(--linha-texto);
+  font-family: var(--body-font);
+}
+
+/* Título principal */
+.mecanismos-dom h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  color: var(--vermelho-vinho);
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+}
+
+/* Subtítulos em negrito, sem caixas, apenas destaque */
+.mecanismos-dom h3 {
+  font-family: var(--fonte-secundaria);
+  font-size: 1.25rem;
+  font-weight: var(--peso-semi-bold);
+  color: var(--vermelho-vinho);
+  margin-top: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Parágrafos — texto corrido, espaçamento confortável */
+.mecanismos-dom p {
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  color: var(--preto-profundo);
+  line-height: 1.8; /* aumenta leitura */
+  margin-bottom: 1.5rem;
+}
+
+/* Destaque de termos importantes ou glossário */
+.mecanismos-dom a,
+.mecanismos-dom .glossario {
+  color: var(--vermelho-vinho);
+  font-weight: var(--peso-semi-bold);
+  text-decoration: underline dotted;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.mecanismos-dom a:hover,
+.mecanismos-dom .glossario:hover {
+  color: var(--verde-palestina);
+}
+
+/* =====================================================
+   IMPACTOS SOCIAIS — Accordion ESTILO TERRA
+   ===================================================== */
+.impactos-sociais {
+  background-color: var(--branco-quente); /* tom terra suave */
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+  border-radius: 16px;
+  max-width: 900px;
+  margin: 6rem auto;
+  color: #3a2e25; /* texto mais escuro para contraste */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Título da seção */
+.impactos-sociais h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  color: #007a3d; 
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Accordion items */
+.accordion-item {
+  background-color: var(--cinza-claro); /* bloco mais claro */
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px double var(--vermelho-vinho-hover);
+}
+
+/* Hover efeito */
+.accordion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  border-left: 4px solid var(--vermelho-vinho-hover);
+}
+
+/* Header do accordion */
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1.2rem 1.8rem;
+  text-align: left;
+  font-family: var(--fonte-secundaria);
+  font-size: 1.2rem;
+  font-weight: var(--peso-semi-bold);
+  color: var(--vermelho-vinho);
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Ícone de expandir/colapsar */
+.accordion-header::after {
+  content: '+';
+  position: absolute;
+  right: 1.8rem;
+  font-size: 1.4rem;
+  transition: transform 0.5s ease; /* mais lento */
+}
+
+.accordion-item.active .accordion-header::after {
+  content: '−';
+}
+
+/* Conteúdo do accordion */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.8rem;
+  background-color: white;
+  transition: max-height 0.6s ease, padding 0.6s ease; /* abertura/fechamento mais lento */
+}
+
+/* Conteúdo aberto */
+.accordion-item.active .accordion-content {
+  padding: 1rem 1.8rem 1.5rem 1.8rem;
+  max-height: 600px; /* suficiente para conteúdo maior */
+}
+
+/* Parágrafos internos */
+.accordion-content p {
+  margin: 0;
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  color: #3a2e25;
+  line-height: var(--linha-texto);
+}
+
+/* =====================================================
+   PENSADORES — CARDS REFORMULADOS
+   ===================================================== */
+.pensadores {
+  background-color: #f5f5f5; /* cinza suave para destacar da página */
+  color: var(--preto-profundo);
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+  max-width: 900px;
+  margin: 6rem auto;
+  border-radius: 12px;
+  text-align: left;
+  font-family: var(--body-font);
+}
+
+/* Título da seção */
+.pensadores h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  color: var(--vermelho-vinho);
+  text-align: center;
+  margin-bottom: 3rem;
+  line-height: var(--linha-titulo);
+}
+
+/* Container flexível para os cards */
+.pensadores .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+/* Cada card */
+.pensadores .card {
+  background-color: var(--branco-quente);
+  padding: 1.5rem 1.8rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border-left: 6px solid var(--vermelho-vinho);
+}
+
+/* Hover dos cards */
+.pensadores .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.15);
+  border-left: 6px solid var(--verde-palestina);
+}
+
+/* Nome do autor */
+.pensadores .card h3 {
+  font-family: var(--fonte-secundaria);
+  font-size: 1.3rem;
+  font-weight: var(--peso-semi-bold);
+  color: var(--vermelho-vinho);
+  margin-bottom: 0.8rem;
+}
+
+/* Parágrafos do card */
+.pensadores .card p {
+  font-family: var(--body-font);
+  font-size: var(--texto-base);
+  color: var(--preto-profundo);
+  line-height: 1.7;
+}
+
+/* Glossário / termos importantes */
+.pensadores .glossario {
+  color: var(--vermelho-vinho);
+  font-weight: var(--peso-semi-bold);
+  text-decoration: underline dotted;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.pensadores .glossario:hover {
+  color: var(--verde-palestina);
+}
+
+/* CONTEÚDOS INTERATIVOS */
+.filtros {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: clamp(2rem, 4vw, 3.5rem) 1.5rem;
+  background-color: #f5f0e6; /* tom terra suave */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  font-family: var(--body-font);
+  color: #3a2e25;
+  text-align: left;
+}
+
+/* Título da seção */
+.filtros h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  color: #c1272d;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  background-color: #e6d7c1;
+  color: #3a2e25;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background-color: #c1272d;
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Cards Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card individual */
+.card.conteudo {
+  background-color: #fff3e6;
+  border-left: 6px solid #c1272d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-left-color 0.35s ease;
+}
+
+.card.conteudo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+  border-left-color: #007a3d; /* efeito hover */
+}
+
+/* Card título */
+.card.conteudo h3 {
+  font-family: var(--fonte-secundaria);
+  font-size: 1.2rem;
+  color: #c1272d;
+  margin-bottom: 0.7rem;
+}
+
+/* Card texto */
+.card.conteudo p {
+  font-size: var(--texto-base);
+  line-height: 1.7;
+  color: #3a2e25;
+}
+
+/* =====================================================
+   8. SECTION DESTAQUE — AUTOAVALIAÇÃO
+   ===================================================== */
+.section.destaque {
+  background: linear-gradient(180deg, var(--verde-oliva), var(--preto-profundo));
+  color: var(--branco-quente);
+  text-align: center;
+  padding: clamp(1rem, 6vw, 3rem) 1.5rem;
+  border-radius: 16px;
+  margin: 4rem auto;
+  max-width: 900px;
+  overflow: hidden;
+  position: relative;
+
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-aos="fade-zoom"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.section.destaque h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: var(--titulo-h2);
+  font-weight: var(--peso-semi-bold);
+  margin-bottom: 1rem;
+  line-height: var(--linha-titulo);
+  letter-spacing: var(--tracking-sutil);
+  color: var(--branco-quente);
+}
+
+.section.destaque p {
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-base);
+  line-height: var(--linha-texto);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: var(--cinza-claro);
+}
+
+.section.destaque .buttons.container {
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.section.destaque .button.primary .button__content {
+  background: var(--grad-teoria);
+  transition: transform 0.3s ease;
+}
+
+.section.destaque .button:hover {
+  transform: translateY(-6px) scale(1.05) rotateX(3deg) rotateY(-2deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.section.destaque .button:hover .button__reflection-1 {
+  left: 120%;
+}
+
+.section.destaque .button:hover .button__reflection-2 {
+  left: -70%;
+}
+
+.section.destaque:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}

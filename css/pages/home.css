@@ -519,6 +519,7 @@ cite em {
   line-height: var(--linha-titulo);
   letter-spacing: var(--tracking-sutil);
   color: var(--vermelho-vinho);
+  text-align: center;
 }
 
 #sobre p {
@@ -726,7 +727,7 @@ cite em {
   text-align: center;
 }
 
-.faq h2 {
+ .container .faq h2 {
   font-family: var(--fonte-secundaria);
   font-size: var(--titulo-h2);
   font-weight: var(--peso-semi-bold);
@@ -734,6 +735,7 @@ cite em {
   line-height: var(--linha-titulo);
   letter-spacing: var(--tracking-sutil);
   color: var(--preto-profundo);
+  text-align: center;
 }
 
 /* Container de itens FAQ */

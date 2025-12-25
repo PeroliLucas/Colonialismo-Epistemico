@@ -159,3 +159,61 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     })
     .catch((err) => console.error("Erro ao carregar os dados do JSON:", err));
+
+
+// ================================
+  // TIMELINE PAG2
+  // ================================
+    function toggleContext(button) {
+    const contexto = button.nextElementSibling;
+    if (contexto.style.maxHeight && contexto.style.maxHeight !== "0px") {
+      contexto.style.maxHeight = "0";
+    } else {
+      contexto.style.maxHeight = contexto.scrollHeight + "px";
+    }
+  }
+
+  // ================================
+  // ACCORDION PAG2
+  // ================================
+ const headers = document.querySelectorAll('.accordion-header');
+
+headers.forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+
+    // Fecha outros itens
+    document.querySelectorAll('.accordion-item').forEach(i => {
+      if (i !== item) {
+        i.classList.remove('active');
+      }
+    });
+
+    // Alterna o item clicado
+    item.classList.toggle('active');
+  });
+});
+
+// ================================
+  // TAB/ABA PAG2
+  // ================================
+const tabButtons = document.querySelectorAll(".tab-btn");
+const cards = document.querySelectorAll(".cards-container .card");
+
+tabButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    // Remove classe active de todas as tabs
+    tabButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.getAttribute("data-filter");
+
+    cards.forEach(card => {
+      if(filter === "todos") {
+        card.style.display = "block";
+      } else {
+        card.style.display = card.classList.contains(filter) ? "block" : "none";
+      }
+    });
+  });
+});

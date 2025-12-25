@@ -1,0 +1,321 @@
+<style>
+    /* ================================ TIMELINE ================================ */
+.linha-tempo {
+  max-width: 900px;
+  margin: 5rem auto;
+  padding: 0 1rem;
+}
+
+.timeline-container {
+  position: relative;
+  margin-top: 3rem;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background-color: var(--vermelho-vinho);
+  border-radius: 2px;
+}
+
+.evento {
+  position: relative;
+  width: 50%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+}
+
+.evento.esquerda {
+  left: 0;
+  text-align: right;
+}
+
+.evento.direita {
+  left: 50%;
+  text-align: left;
+}
+
+.evento .conteudo {
+  background-color: var(--branco-quente);
+  padding: 1.4rem 1.6rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.evento .conteudo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.evento .ano {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--verde-oliva);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.evento button {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--cinza-claro);
+  color: var(--verde-oliva);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.evento button:hover {
+  background-color: var(--verde-oliva);
+  color: #fff;
+}
+
+.contexto {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  border-left: 3px solid var(--verde-palestina);
+  padding-left: 0.8rem;
+  transition: max-height 0.5s ease;
+}
+
+.evento::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  width: 14px;
+  height: 14px;
+  background-color: var(--vermelho-vinho);
+  border-radius: 50%;
+  left: 100%;
+  transform: translateX(-50%);
+}
+
+.evento.direita::before {
+  left: 0%;
+  transform: translateX(-50%);
+}
+
+/* ================================ ROOT — VARIÁVEIS ================================ */
+:root {
+  /* CORES */
+  --branco-quente: #f5f5f5;
+  --preto-profundo: #0b120e;
+  --verde-oliva: #0f1a13;
+  --vermelho-vinho: #c1272d;
+  --vermelho-vinho-hover: #a51f24;
+  --verde-palestina: #007a3d;
+
+/* ================================ COMPLEMENTARES ================================ */
+  --cinza-claro: #eaeaea;
+  --cinza-medio: #aaa;
+  --cinza-borda: #2a2a2a;
+
+  /* TIPOGRAFIA */
+  --fonte-titulo: "Playfair Display", serif;
+  --fonte-texto: "Inter", sans-serif;
+
+/* ================================ BOX-SHADOWS ================================ */
+    --sombra-leve: 0 2px 6px rgba(0, 0, 0, 0.15);
+    --sombra-moderada: 0 4px 14px rgba(0, 0, 0, 0.24);
+    --sombra-intensa: 0 8px 18px rgba(0, 0, 0, 0.30);
+}
+
+/* ================================ RESET E BASE ================================ */
+html {
+  background-color: var(--branco-quente);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  color: var(--verde-oliva);
+  line-height: 1.6;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--vermelho-vinho);
+}
+
+/* Timeline */
+.timeline {
+  max-width: 900px;
+  margin: 4rem auto;
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+.timeline h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.timeline ul {
+  list-style: none;
+  padding: 0;
+  position: relative;
+}
+
+.timeline li {
+  position: relative;
+  width: 50%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+}
+
+.timeline li:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.timeline li:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline li .content {
+  background-color: var(--cinza-claro);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline li .content strong {
+  display: block;
+  color: var(--vermelho-vinho);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline li .content p {
+  margin: 0;
+  color: var(--verde-oliva);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.timeline ul::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--verde-oliva);
+  border-radius: 2px;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  width: 16px;
+  height: 16px;
+  background-color: var(--vermelho-vinho);
+  border: 4px solid var(--branco-quente);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 0 2px var(--verde-oliva);
+}
+
+.timeline li:nth-child(odd)::before {
+  right: -8px;
+}
+
+.timeline li:nth-child(even)::before {
+  left: -8px;
+}
+
+.separador {
+  border: 0;
+  height: 1px;
+  background-color: var(--verde-oliva); 
+  margin: 3rem 30rem; 
+}
+.timeline li:hover .content {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.36);
+}
+</style>
+
+<html>
+    <section class="section timeline">
+      <h2>Origens e Evolução</h2>
+      <ul>
+        <li data-aos="fade-up">
+          <div class="content">
+            <strong>Idade Moderna</strong>
+            <p>
+              Imposição cultural e religiosa nas colônias, desvalorizando
+              tradições locais.
+            </p>
+          </div>
+        </li>
+        <li data-aos="fade-left">
+          <div class="content">
+            <strong>Iluminismo</strong>
+            <p>
+              Universalização da razão ocidental como critério de
+              conhecimento, reforçando uma visão
+              <span class="glossario" data-glossario
+                title="Perspectiva que privilegia a Europa como referência cultural e intelectual">eurocêntrica</span>.
+            </p>
+          </div>
+        </li>
+        <li data-aos="fade-right">
+          <div class="content">
+            <strong>Colonialismo Científico</strong>
+            <p>
+              Ciência usada como instrumento de poder e classificação de
+              povos.
+            </p>
+          </div>
+        </li>
+        <li data-aos="fade-left">
+          <div class="content">
+            <strong>Pós-colonialismo</strong>
+            <p>
+              Críticas ao eurocentrismo por autores como Fanon, Said e Spivak,
+              abordando questões do
+              <span class="glossario" data-glossario
+                title="Indivíduo ou grupo marginalizado cuja voz não é ouvida nas estruturas de poder">subalterno</span>.
+            </p>
+          </div>
+        </li>
+        <li data-aos="fade-right">
+          <div class="content">
+            <strong>Epistemologias do Sul</strong>
+            <p>
+              Boaventura de Sousa Santos propõe valorização de saberes locais
+              e justiça cognitiva por meio da
+              <span class="glossario" data-glossario
+                title="Perspectiva que valoriza conhecimentos locais, alternativos e marginalizados">epistemologia do
+                Sul</span>.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+</html>
